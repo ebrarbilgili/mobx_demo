@@ -9,6 +9,12 @@ class PhotoAlbumViewModel = _PhotoAlbumViewModelBase with _$PhotoAlbumViewModel;
 
 abstract class _PhotoAlbumViewModelBase with Store {
   @observable
+  bool isLoading = true;
+
+  // @observable
+  // int index2 = 5;
+
+  @observable
   List<PhotoAlbumModel> listPhotoAlbum = [];
 
   PhotoAlbumService photoAlbumService;
@@ -17,7 +23,19 @@ abstract class _PhotoAlbumViewModelBase with Store {
   }
 
   @action
+  void changeLoading() {
+    isLoading = !isLoading;
+  }
+
+  @action
   Future<void> fetchPhotoAlbum() async {
     listPhotoAlbum = await photoAlbumService.fetchPhotoAlbumData();
+  }
+
+  @action
+  Future<void> refresh() async {
+    // index2 = 10;
+    await fetchPhotoAlbum().whenComplete(() => print('OK!'));
+    changeLoading();
   }
 }
