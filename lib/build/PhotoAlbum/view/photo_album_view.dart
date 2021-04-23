@@ -24,13 +24,7 @@ class PhotoAlbumView extends StatelessWidget with BaseState {
         appBar: AppBar(),
         body: Observer(
           builder: (context) {
-            return RefreshIndicator(
-              key: _refreshIndicatorKey,
-              onRefresh: () => photoAlbumViewModel.refresh(),
-              child: photoAlbumViewModel.isLoading
-                  ? ListView(
-                      children: [CupertinoActivityIndicator(animating: false)])
-                  : ListView.builder(
+            return ListView.builder(
                       itemCount: photoAlbumViewModel.listPhotoAlbum.length,
                       itemBuilder: (context, index) {
                         final item = photoAlbumViewModel.listPhotoAlbum[index];
@@ -42,7 +36,6 @@ class PhotoAlbumView extends StatelessWidget with BaseState {
                         );
                       },
                     ),
-            );
           },
         ));
   }
