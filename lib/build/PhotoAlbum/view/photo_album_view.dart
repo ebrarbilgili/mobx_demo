@@ -14,7 +14,7 @@ class PhotoAlbumView extends StatelessWidget with BaseState {
 
   final photoAlbumViewModel = PhotoAlbumViewModel(
     photoAlbumService: PhotoAlbumService(
-      service: Dio(BaseOptions(baseUrl: ServicePath.BASEURL.values)),
+      service: Dio(BaseOptions(baseUrl: 'https://jsonplaceholder.typicode.com')),
     ),
   );
 
